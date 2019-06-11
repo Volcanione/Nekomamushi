@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>基于layui的日历记事本</title>
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="./layui_exts/laydateNote/laydateNote.css" />
+  </head>
+  <body>
+    <style></style>
+
+    <!-- 你的HTML代码 -->
+
+    <div class="layui-container" style="padding: 15px;">
+      <div class="layui-row">
+        <div class="layui-col-md12">
+          <blockquote class="layui-elem-quote">
+            基于layui的日历记事本
+          </blockquote>
+          <!--容器-->
+          <div class="layui-inline" id="test-n2"></div>
+          <!--容器-->
+        </div>
+      </div>
+    </div>
+    <script src="./layui/layui.js"></script>
+    <script>
+      //调用
+      layui
+        .extend({
+          laydateNote: './layui_exts/laydateNote/laydateNote'
+        })
+        .use(['laydateNote'], function() {
+          //调用
+          let { laydateNote } = layui
+          laydateNote({
+            elem: '#test-n2', //容器id,CLass
+            url: 'test2.json', //异步数据接口,本地浏览时可不设置
+            sort: 'up', //日期排序，默认不设置不排序，up 日期升序，down 日期降序
+            done(data) {
+              //回调数据，这里发送你的请求ajax
+              console.log(data)
+            }
+          })
+        })
+    </script>
+  </body>
+</html>
